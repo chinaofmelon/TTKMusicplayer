@@ -18,7 +18,7 @@ static Data CATEGORY_ITEMS[] = {
     {{200, 30}, {600, 370}, 2, 100, 200}, // TopList
     {{100, 30}, {600, 370}, 2, 100, 200}, // ArtistList
     {{150, 30}, {480, 220}, 2, 100, 200}, // MovieList
-    {{100, 20}, {520, 250}, 5, 80, 75}    // SkinList
+    {{100, 20}, {520, 250}, 5, 50, 80}    // SkinList
 };
 static constexpr int ITEM_LABEL_HEIGHT = 20;
 

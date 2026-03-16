@@ -92,11 +92,10 @@ void MusicDownloadTimeLineSkinRequest::downloadFinished()
                     const QByteArray &name = aes.decryptCBC(cipher.toUtf8(), key.toUtf8(), iv.toUtf8(), true);
 
                     MusicSkinRemoteItem item;
+                    item.m_name = value["topic"].toString();
                     item.m_index = index++;
-                    item.m_useCount = value["score"].toInt();
+                    item.m_useCount = value["score"].toFloat() * 100;
                     item.m_url = imgurl.left(imgurl.lastIndexOf(TTK_SEPARATOR)) + TTK_SEPARATOR + name + rest + "." + ext;
-
-                    TTK_INFO_STREAM( item.m_url);
 
                     if(item.isValid())
                     {
