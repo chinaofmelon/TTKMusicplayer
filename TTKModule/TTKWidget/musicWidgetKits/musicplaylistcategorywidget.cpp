@@ -120,7 +120,7 @@ MusicPlaylistCategoryItem::MusicPlaylistCategoryItem(CategoryProperty *category,
 
         label->setProperty("key", items[i].m_key);
         label->setProperty("value", items[i].m_value);
-        label->setStyleSheet(QString("QLabel::hover{ %1 }").arg(TTK::UI::ColorStyle07));
+        label->setStyleSheet(TTK::UI::LabelStyle04.arg(TTK::UI::ColorStyle02, TTK::UI::ColorStyle07));
         label->setFixedSize(LINE_SPACING_SIZE, ITEM_LABEL_HEIGHT);
 
         m_items << label;

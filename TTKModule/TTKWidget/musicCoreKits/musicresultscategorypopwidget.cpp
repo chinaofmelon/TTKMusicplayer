@@ -49,7 +49,7 @@ void MusicResultsCategoryPopItem::setCategory(MusicCategoryConfigManager::Catego
     for(int i = 0; i < category.m_items.count(); ++i)
     {
         TTKClickedLabel *label = new TTKClickedLabel(category.m_items[i].m_value, item);
-        label->setStyleSheet(QString("QLabel::hover{ %1 }").arg(TTK::UI::ColorStyle07));
+        label->setStyleSheet(TTK::UI::LabelStyle04.arg(TTK::UI::ColorStyle02, TTK::UI::ColorStyle07));
         label->setFixedSize(data.m_valueSize, ITEM_LABEL_HEIGHT);
 
         clickedGroup->addWidget(label);
@@ -130,7 +130,7 @@ void MusicResultsCategoryPopWidget::initialize()
         default: setText(tr("All")); break;
     }
 
-    const QString &style = TTK::UI::BorderStyle02 + TTK::UI::BackgroundStyle10;
+    const QString &style = TTK::UI::ColorStyle02 + TTK::UI::BorderStyle02 + TTK::UI::BackgroundStyle10;
     setObjectName(MusicResultsCategoryPopWidget::metaObject()->className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), style));
 
