@@ -356,9 +356,9 @@ bool MusicSongMeta::readInformation()
     {
         qint64 length = 0;
         QStringList files;
-        const QList<TrackInfo*> infos(factory->createPlayList(m_path, TrackInfo::AllParts, &files));
+        const QList<TrackInfo*> playlist(factory->createPlayList(m_path, TrackInfo::AllParts, &files));
 
-        for(TrackInfo *info : qAsConst(infos))
+        for(TrackInfo *info : qAsConst(playlist))
         {
             Data *data = new Data;
             data->m_path = info->path();
@@ -393,7 +393,7 @@ bool MusicSongMeta::readInformation()
             m_offset = m_songMetas.count() - 1;
         }
 
-        qDeleteAll(infos);
+        qDeleteAll(playlist);
 
         if(m_songMetas.isEmpty())
         {
