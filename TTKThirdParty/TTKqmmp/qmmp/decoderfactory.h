@@ -21,11 +21,9 @@
 #ifndef DECODERFACTORY_H
 #define DECODERFACTORY_H
 
-#include <QIODevice>
-#include <QStringList>
 #include "decoder.h"
-#include "metadatamodel.h"
 #include "trackinfo.h"
+#include "metadatamodel.h"
 
 /*! @brief Structure to store input plugin properties.
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -77,7 +75,7 @@ public:
      * @param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search
      * (useful to exclude cue data files from playlist).
      */
-    virtual QList<TrackInfo*> createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
+    virtual QList<TrackInfo> createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
     /*!
      * Creats metadata object, which provides full access to file tags.
      * @param path File path.

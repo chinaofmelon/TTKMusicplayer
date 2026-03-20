@@ -221,21 +221,21 @@ void MusicSpectrumWidget::createSpectrumWidget(Data::Module spectrum, bool &stat
 {
     if(state)
     {
-        const int before = Visual::visuals()->count();
+        const int before = Visual::visuals().count();
         TTK::TTKQmmp::setVisualEnabled(name, true, this);
-        const QList<Visual*> *vs = Visual::visuals();
-        if(before == vs->count())
+        const QList<Visual*> &vs = Visual::visuals();
+        if(before == vs.count())
         {
             showMessageBoxWidget();
             state = false;
             return;
         }
 
-        if(!vs->isEmpty())
+        if(!vs.isEmpty())
         {
             Data spem;
             spem.m_module = name;
-            spem.m_object = vs->last();
+            spem.m_object = vs.last();
             spem.m_type = spectrum;
             m_spectrums << spem;
             layout->addWidget(spem.m_object);
@@ -294,22 +294,22 @@ void MusicSpectrumWidget::createModuleWidget(Data::Module spectrum, bool &state,
         return;
     }
 
-    const int before = Visual::visuals()->count();
+    const int before = Visual::visuals().count();
     TTK::TTKQmmp::setVisualEnabled(name, true, this);
-    const QList<Visual*> *vs = Visual::visuals();
-    if(before == vs->count())
+    const QList<Visual*> &vs = Visual::visuals();
+    if(before == vs.count())
     {
         showMessageBoxWidget();
         state = false;
         return;
     }
 
-    if(!vs->isEmpty())
+    if(!vs.isEmpty())
     {
         *module = name;
         Data spem;
         spem.m_module = name;
-        spem.m_object = vs->last();
+        spem.m_object = vs.last();
         spem.m_type = spectrum;
         m_spectrums << spem;
         layout->addWidget(spem.m_object);

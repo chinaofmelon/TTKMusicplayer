@@ -32,10 +32,10 @@ void MusicBlurSpecturmModule::show()
 
     TTK::TTKQmmp::setVisualEnabled("outerblurwave", true, TTKStaticCast(QWidget*, parent()));
 
-    const QList<Visual*> *vs = Visual::visuals();
-    if(!vs->isEmpty() && vs->last())
+    const QList<Visual*> &vs = Visual::visuals();
+    if(!vs.isEmpty() && vs.last())
     {
-        m_visualWidget = vs->last();
+        m_visualWidget = vs.last();
         m_visualWidget->setFixedHeight(65);
         m_visualWidget->setMinimumWidth(CONCISE_WIDTH_MIN);
 

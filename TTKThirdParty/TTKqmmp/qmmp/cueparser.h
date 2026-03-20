@@ -21,12 +21,12 @@
 #ifndef CUEPARSER_H
 #define CUEPARSER_H
 
-#include <QByteArray>
-#include <QStringList>
 #include <QFileInfo>
+#include <QStringList>
 #include "trackinfo.h"
 
 class QmmpTextCodec;
+class CueParserPrivate;
 
 /*! @brief The CueParser class provides CUE parser.
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -37,7 +37,7 @@ public:
     /*!
      * Constructs empty CUE parser.
      */
-    CueParser() = default;
+    CueParser();
     /*!
      * Constructs CUE parser and parses given content.
      * \param data Content of CUE file.
@@ -65,7 +65,7 @@ public:
      * Creates playlist using parsed CUE metadata.
      * \param track Track number to return (-1 for all playlist or 1..n for specific track)
      */
-    QList<TrackInfo*> createPlayList(int track = -1) const;
+    QList<TrackInfo> createPlayList(int track = -1) const;
     /*!
      * Returns a list of data files.
      */
@@ -97,7 +97,7 @@ public:
     /*!
      * Returns information for the given \b track.
      */
-    const TrackInfo *info(int track) const;
+    TrackInfo info(int track) const;
     /*!
      * Sets duration for the given content file.
      * \param file Content file path.
@@ -140,18 +140,7 @@ public:
     void clear();
 
 private:
-    struct CUETrack
-    {
-        TrackInfo info;
-        QString file;
-        qint64 offset = 0;
-    };
-	
-    QList<CUETrack *> m_tracks;
-    QStringList m_files;
-
-    QStringList splitLine(const QString &line);
-    qint64 getLength(const QString &str);
+    CueParserPrivate *d;
 
 };
 

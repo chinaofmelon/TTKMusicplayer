@@ -21,10 +21,6 @@
 #ifndef EMGINEFACTORY_H
 #define EMGINEFACTORY_H
 
-#include <QStringList>
-#include <QList>
-#include <QMap>
-#include <QIODevice>
 #include "trackinfo.h"
 #include "metadatamodel.h"
 
@@ -76,7 +72,7 @@ public:
      * @param parts parts of metadata which should be extracted from file.
      * (useful to exclude cue data files from playlist).
      */
-    virtual QList<TrackInfo*> createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
+    virtual QList<TrackInfo> createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
     /*!
      * Creats metadata object, which provides full access to file tags.
      * @param path File path.

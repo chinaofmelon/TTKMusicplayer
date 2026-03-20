@@ -81,10 +81,10 @@ void MusicRemoteWidgetForRipple::createVisualWidget()
 {
     TTK::TTKQmmp::setVisualEnabled(m_mode ? "outerripples" : "outerrayswave", true, this);
 
-    const QList<Visual*> *vs = Visual::visuals();
-    if(!vs->isEmpty() && vs->last())
+    const QList<Visual*> &vs = Visual::visuals();
+    if(!vs.isEmpty() && vs.last())
     {
-        m_visual = vs->last();
+        m_visual = vs.last();
         m_visualLayout->insertWidget(0, m_visual);
     }
 }

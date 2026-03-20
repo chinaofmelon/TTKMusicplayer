@@ -21,23 +21,10 @@
 #ifndef METADATAMANAGER_H
 #define METADATAMANAGER_H
 
-#include <QDir>
-#include <QCache>
-#include <QImage>
-#include <QStringList>
-#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
-#  include <QMutex>
-#else
-#  include <QRecursiveMutex>
-#endif
 #include "trackinfo.h"
 #include "metadatamodel.h"
 
-class DecoderFactory;
-class EngineFactory;
-class InputSourceFactory;
-class QmmpSettings;
-
+class MetaDataManagerPrivate;
 
 /*! @brief The MetaDataManager class is the base class for metadata access.
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -53,7 +40,7 @@ public:
      * @param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search
      * (useful to exclude cue data files from playlist)
      */
-    QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts = TrackInfo::AllParts, QStringList *ignoredPaths = nullptr) const;
+    QList<TrackInfo> createPlayList(const QString &path, TrackInfo::Parts parts = TrackInfo::AllParts, QStringList *ignoredPaths = nullptr) const;
     /*!
      * Creats metadata object, which provides full access to file tags.
      * @param url File path or URL.
@@ -119,25 +106,8 @@ private:
     MetaDataManager();
     ~MetaDataManager();
 
-    static void destroy();
-
-    struct CoverCacheItem
-    {
-        QString coverPath;
-        QImage coverImage;
-    };
-
-    QFileInfoList findCoverFiles(QDir dir, int depth) const;
-    CoverCacheItem *createCoverCacheItem(const QString &url) const;
-    mutable QCache<QString, CoverCacheItem> *m_cover_cache;
-    QmmpSettings *m_settings = nullptr;
-#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
-    mutable QMutex m_mutex;
-#else
-    mutable QRecursiveMutex m_mutex;
-#endif
-
-    static MetaDataManager* m_instance;
+    MetaDataManagerPrivate *d;
+    friend class MetaDataManagerPrivate;
 
 };
 

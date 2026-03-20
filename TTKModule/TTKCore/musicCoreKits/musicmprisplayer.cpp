@@ -7,6 +7,7 @@
 #include <QUrl>
 #include <QBuffer>
 #include <QDBusMessage>
+#include <qmmp/decoder.h>
 #include <qmmp/soundcore.h>
 #include <qmmp/metadatamanager.h>
 #include <qmmp/abstractengine.h>

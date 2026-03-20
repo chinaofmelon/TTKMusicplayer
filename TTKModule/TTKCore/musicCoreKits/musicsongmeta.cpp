@@ -356,31 +356,31 @@ bool MusicSongMeta::readInformation()
     {
         qint64 length = 0;
         QStringList files;
-        const QList<TrackInfo*> playlist(factory->createPlayList(m_path, TrackInfo::AllParts, &files));
+        const QList<TrackInfo> &playlist = factory->createPlayList(m_path, TrackInfo::AllParts, &files);
 
-        for(TrackInfo *info : qAsConst(playlist))
+        for(const TrackInfo &info : qAsConst(playlist))
         {
             Data *data = new Data;
-            data->m_path = info->path();
+            data->m_path = info.path();
             data->m_metaData[TagMeta::URL] = files.isEmpty() ? m_path : files.first();
 
-            data->m_metaData[TagMeta::SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
-            data->m_metaData[TagMeta::BITRATE] = info->value(Qmmp::BITRATE);
-            data->m_metaData[TagMeta::CHANNEL] = info->value(Qmmp::CHANNELS);
-            data->m_metaData[TagMeta::FORMAT] = info->value(Qmmp::FORMAT_NAME);
+            data->m_metaData[TagMeta::SAMPLERATE] = info.value(Qmmp::SAMPLERATE);
+            data->m_metaData[TagMeta::BITRATE] = info.value(Qmmp::BITRATE);
+            data->m_metaData[TagMeta::CHANNEL] = info.value(Qmmp::CHANNELS);
+            data->m_metaData[TagMeta::FORMAT] = info.value(Qmmp::FORMAT_NAME);
 
-            data->m_metaData[TagMeta::TITLE] = info->value(Qmmp::TITLE);
-            data->m_metaData[TagMeta::ARTIST] = info->value(Qmmp::ARTIST);
-            data->m_metaData[TagMeta::ALBUM] = info->value(Qmmp::ALBUM);
-            data->m_metaData[TagMeta::YEAR] = info->value(Qmmp::YEAR);
-            data->m_metaData[TagMeta::COMMENT] = info->value(Qmmp::COMMENT);
-            data->m_metaData[TagMeta::TRACK] = info->value(Qmmp::TRACK);
-            data->m_metaData[TagMeta::GENRE] = info->value(Qmmp::GENRE);
+            data->m_metaData[TagMeta::TITLE] = info.value(Qmmp::TITLE);
+            data->m_metaData[TagMeta::ARTIST] = info.value(Qmmp::ARTIST);
+            data->m_metaData[TagMeta::ALBUM] = info.value(Qmmp::ALBUM);
+            data->m_metaData[TagMeta::YEAR] = info.value(Qmmp::YEAR);
+            data->m_metaData[TagMeta::COMMENT] = info.value(Qmmp::COMMENT);
+            data->m_metaData[TagMeta::TRACK] = info.value(Qmmp::TRACK);
+            data->m_metaData[TagMeta::GENRE] = info.value(Qmmp::GENRE);
 
-            length = info->duration();
+            length = info.duration();
             if(length == 0)
             {
-                const int bitrate = info->value(Qmmp::BITRATE).toInt();
+                const int bitrate = info.value(Qmmp::BITRATE).toInt();
                 if(bitrate > 0)
                 {
                     length = QFileInfo(data->m_metaData[TagMeta::URL]).size() * 8.0f / bitrate;
@@ -392,8 +392,6 @@ bool MusicSongMeta::readInformation()
             m_songMetas << data;
             m_offset = m_songMetas.count() - 1;
         }
-
-        qDeleteAll(playlist);
 
         if(m_songMetas.isEmpty())
         {
