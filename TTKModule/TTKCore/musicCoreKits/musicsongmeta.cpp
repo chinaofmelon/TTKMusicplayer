@@ -356,7 +356,7 @@ bool MusicSongMeta::readInformation()
     {
         qint64 length = 0;
         QStringList files;
-        const QList<TrackInfo> &playlist = factory->createPlayList(m_path, TrackInfo::AllParts, &files);
+        const TrackInfoList &playlist = factory->createPlayList(m_path, TrackInfo::AllParts, &files);
 
         for(const TrackInfo &info : qAsConst(playlist))
         {
