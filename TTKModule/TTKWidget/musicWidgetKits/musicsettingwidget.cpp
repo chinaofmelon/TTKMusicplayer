@@ -1121,9 +1121,9 @@ void MusicSettingWidget::initAudioSettingWidget()
     m_ui->replayGainModeComboBox->addItem(tr("Track"), QmmpSettings::REPLAYGAIN_TRACK);
     m_ui->replayGainModeComboBox->addItem(tr("Album"), QmmpSettings::REPLAYGAIN_ALBUM);
     m_ui->replayGainModeComboBox->addItem(tr("Disabled"), QmmpSettings::REPLAYGAIN_DISABLED);
-    m_ui->bitDepthComboBox->addItem("16", Qmmp::PCM_S16LE);
-    m_ui->bitDepthComboBox->addItem("24", Qmmp::PCM_S24LE);
-    m_ui->bitDepthComboBox->addItem("32", Qmmp::PCM_S32LE);
+    m_ui->bitDepthComboBox->addItem("16", Qmmp::PCM_S16);
+    m_ui->bitDepthComboBox->addItem("24", Qmmp::PCM_S24);
+    m_ui->bitDepthComboBox->addItem("32", Qmmp::PCM_S32);
 }
 
 void MusicSettingWidget::initNetworkWidget()
